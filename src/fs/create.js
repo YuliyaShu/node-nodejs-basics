@@ -1,8 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-const pathToFolder = path.join(path.dirname(fileURLToPath(import.meta.url)), '/files');
-const pathToFresh = path.join(path.dirname(fileURLToPath(import.meta.url)), '/files/fresh.txt');
+
+const fileName = path.dirname(fileURLToPath(import.meta.url));
+const pathToFolder = path.join(fileName, '/files');
+const pathToFresh = path.join(fileName, '/files/fresh.txt');
 const textToFresh = 'I am fresh and young';
 const create = async () => {
     fs.readdir(pathToFolder, (err, files) => {
