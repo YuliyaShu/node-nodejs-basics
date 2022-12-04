@@ -1,4 +1,4 @@
-import fs from 'fs';
+import { readdir, writeFile } from 'node:fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -8,16 +8,13 @@ const pathToFile = path.join(pathToFolder, '/fresh.txt');
 const textToFresh = 'I am fresh and young';
 
 const create = async () => {
-    fs.readdir(pathToFolder, (err, files) => {
-        if (err) throw err;
-        if (files.includes('fresh.txt')) {
-            throw new Error('FS operation failed');
-        } else {
-            fs.writeFile(pathToFile, textToFresh, (err) => {
-                if (err) throw err;
-            } )
-        };  
-    });
+    try {
+        const files = await readdir(pathToFolder); 
+        (files.includes('fresh.txt')) ? err : await writeFile(pathToFile, textToFresh);  
+        
+    } catch (err) {
+        if (err) throw new Error('FS operation failed');
+    }
 };
 
 await create();
