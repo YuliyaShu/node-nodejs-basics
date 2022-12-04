@@ -12,7 +12,7 @@ const create = async () => {
         if (files.includes('fresh.txt')) {
             throw new Error('FS operation failed');
         } else {
-            fs.appendFile(pathToFresh, textToFresh, (err) => {
+            fs.writeFile(pathToFresh, textToFresh, (err) => {
                 if (err) throw err;
             } )
         };  
