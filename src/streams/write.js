@@ -10,7 +10,7 @@ const pathToFile = path.join(pathToFolder, fileName);
 const write = async () => {
     try {
         const stream = createWriteStream(pathToFile);
-        process.stdout.write("Hello! Insert text. (To exit, press ctr+c)");
+        process.stdout.write("Hello! Insert text. (To exit, press ctr+c) \n");
         process.on('SIGINT', () => {
             process.stdout.write('Buy!');
             process.exit();
