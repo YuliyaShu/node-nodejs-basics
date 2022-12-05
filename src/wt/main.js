@@ -9,6 +9,7 @@ const data = 11;
 const worker = new Worker(pathToWorker, {
     workerData: data,
 });
+
 worker.on('message', msg => console.log(`Fibonacci result: ${msg[0]}`));
     worker.on('error', (err) => {
         throw new Error(err);
@@ -21,7 +22,6 @@ worker.on('message', msg => console.log(`Fibonacci result: ${msg[0]}`));
 const performCalculations = async () => {
   worker.on('message', async msg => {
     const result = [];
-    
     for (let i = 0; i < msg[1]; i += 1) {
       const pathToIWorker = path.join(dirName, `./worker${i}.js`);
       const workerCPU = new Worker(pathToIWorker);
